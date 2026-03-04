@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-// ✅ Import images properly
+
 import Books from "@/assets/HeroImages/Books.png";
 import Man from "@/assets/HeroImages/Man.png";
 

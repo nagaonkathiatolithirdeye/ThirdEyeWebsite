@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
+// ✅ Import images properly
+import Chinmoy from "@/assets/Faculty/Chinmoy.webp";
+import AditImg from "@/assets/Faculty/Adit.webp";
+import Riku from "@/assets/Faculty/Riku.webp";
+
 type FacultyItem = {
   name: string;
   role: string;
@@ -11,17 +16,17 @@ const facultyMembers: FacultyItem[] = [
   {
     name: "Chinmoy Sankar Bora",
     role: "Head of the Institute",
-   image: "./src/assets/Faculty/Chinmoy.webp"
+    image: Chinmoy,
   },
   {
     name: "Adit Yadav",
     role: "Faculty Incharge",
-    image: "./src/assets/Faculty/Adit.webp",
+    image: AditImg,
   },
   {
     name: "Rikumoni Bhattacharjya",
     role: "Computer Instructor",
-    image: "./src/assets/Faculty/Riku.webp",
+    image: Riku,
   },
 ];
 
@@ -34,14 +39,13 @@ export default function Faculty() {
     intervalRef.current = setInterval(() => {
       setExiting(true);
 
-      // AFTER EXIT ANIMATION → rotate stack
       setTimeout(() => {
         setCards((prev) => {
           const [first, ...rest] = prev;
           return [...rest, first];
         });
         setExiting(false);
-      }, 1500); // must match CSS duration
+      }, 1500);
     }, 3000);
 
     return () => {
@@ -71,9 +75,11 @@ export default function Faculty() {
             >
               <img className="pr-1.5" src={f.image} alt={f.name} />
               <div className="overlay">
-                <div className="z-0">
+                <div>
                   <h4 className="font-bold">{f.name}</h4>
-                  <p className="text-[10px] tracking-wider font-bold">{f.role}</p>
+                  <p className="text-[10px] tracking-wider font-bold">
+                    {f.role}
+                  </p>
                 </div>
                 <div className="n-box"></div>
               </div>

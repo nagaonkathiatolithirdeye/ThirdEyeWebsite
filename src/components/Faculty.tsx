@@ -1,7 +1,7 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 
-// ✅ Import images properly
 import Chinmoy from "@/assets/Faculty/Chinmoy.webp";
 import AditImg from "@/assets/Faculty/Adit.webp";
 import Riku from "@/assets/Faculty/Riku.webp";
@@ -54,15 +54,21 @@ export default function Faculty() {
   }, []);
 
   return (
-    <section className="py-16 flex justify-center">
-      <div className="card-box">
+    <section className="py-20 flex flex-col items-center bg-background">
+      <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">
+        Our <span className="text-primary">Faculty</span>
+      </h2>
+
+      <div className="relative w-[320px] h-[420px]">
         {cards.slice(0, 3).map((f, i) => {
           const isTop = i === 0 && exiting;
 
           return (
             <article
               key={f.name}
-              className={`faculty-card ${isTop ? "exit" : ""}`}
+              className={`absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ${
+                isTop ? "opacity-0 scale-95" : ""
+              }`}
               style={{
                 transform:
                   i === 0
@@ -73,15 +79,19 @@ export default function Faculty() {
                 zIndex: 3 - i,
               }}
             >
-              <img className="pr-1.5" src={f.image} alt={f.name} />
-              <div className="overlay">
-                <div>
-                  <h4 className="font-bold">{f.name}</h4>
-                  <p className="text-[10px] tracking-wider font-bold">
+              <img
+                src={f.image}
+                alt={f.name}
+                className="w-full h-full object-cover"
+              />
+
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5">
+                <div className="text-white">
+                  <h4 className="text-lg font-bold">{f.name}</h4>
+                  <p className="text-sm tracking-wide opacity-90">
                     {f.role}
                   </p>
                 </div>
-                <div className="n-box"></div>
               </div>
             </article>
           );

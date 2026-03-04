@@ -134,28 +134,6 @@ body::-webkit-scrollbar {
   object-fit: cover;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  /* background: linear-gradient(to top, rgb(255, 6, 6) 1%, transparent 99%); */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-  color: white;
-}
-.overlay::before {
-  position: absolute;
-  content: "";
-  height: 165px;
-  inset: 0;
-  background: rgb(230, 38, 230);
-  filter: blur(20px);
-  top: 80%;
-  left: -50px;
-  transform: rotate(20deg);
-}
-
 .faculty-card.exit {
   transform: translateX(-220px) translateY(-18px) rotate(-24deg) scale(0.22) !important;
   opacity: 0;

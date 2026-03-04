@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/carousel";
 
 import Entrance from "@/assets/Pictures/Entrance.webp";
-import OfficeRoom from "@/assets/Pictures/Office Room.webp";
-import PracticalRoom from "@/assets/Pictures/Practical Room.webp";
-import TheoryRoom from "@/assets/Pictures/Theory Room.webp";
+import OfficeRoom from "@/assets/Pictures/OfficeRoom.webp";
+import PracticalRoom from "@/assets/Pictures/PracticalRoom.webp";
+import TheoryRoom from "@/assets/Pictures/TheoryRoom.webp";
 import Practical1 from "@/assets/Pictures/practicalclass1.webp";
-import Practical2 from "@/assets/Pictures/practicalclass2.webp";
+import Practical2 from "@/assets/Pictures/Practicalclass2.webp";
 import Practical3 from "@/assets/Pictures/practicalclass3.webp";
 import Practical4 from "@/assets/Pictures/practicalclass4.webp";
 import Practical5 from "@/assets/Pictures/practicalclass5.webp";

@@ -92,7 +92,7 @@ export default function Faculty() {
                     width: "200%",
                     background: "rgb(230, 38, 230)",
                     filter: "blur(20px)",
-                    bottom: "-120px",
+                    bottom: "-100px",
                     left: "-50px",
                     transform: "rotate(20deg)",
                     zIndex: 0,
@@ -101,8 +101,8 @@ export default function Faculty() {
 
                 {/* Text content */}
                 <div style={{ position: "relative", zIndex: 1 }}>
-                  <h4>{f.name}</h4>
-                  <p>{f.role}</p>
+                  <h4 className=" font-[Pristina] text-2xl">{f.name}</h4>
+                  <p className="font-[Pristina] ">{f.role}</p>
                 </div>
               </div>
             </article>

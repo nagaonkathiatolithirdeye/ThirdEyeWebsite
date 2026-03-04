@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 
-/* ---------- Reviews Data ---------- */
+import Sakib from "@/assets/StudentsPicture/Sakib Sahariyar Nobi.webp";
+import Shah from "@/assets/StudentsPicture/Shah Arju Nobi.webp";
+import Deep from "@/assets/StudentsPicture/Deep Jyoti Gussait.webp";
+import Archita from "@/assets/StudentsPicture/Archita Newar.webp";
+import Biki from "@/assets/StudentsPicture/Biki Mudoi.webp";
+import Sasank from "@/assets/StudentsPicture/Sasanka Nath.webp";
+
 const reviewsData = [
   {
     name: "Sakib Sahariyar Nobi",
@@ -10,7 +16,7 @@ const reviewsData = [
     rating: 5,
     text:
       "Third Eye Education is a revolution in the field of Computer Education. Faculties have strong core concepts which help students gain practical and technical skills effectively.",
-    avatar: "./src/assets/StudentsPicture/Sakib Sahariyar Nobi.webp",
+    avatar: Sakib,
   },
   {
     name: "Anamika Bardhan",
@@ -26,7 +32,7 @@ const reviewsData = [
     rating: 5,
     text:
       "As a beginner, I was worried about learning computer skills. The teaching methods made everything simple and easy to understand.",
-    avatar: "./src/assets/StudentsPicture/Shah Arju Nobi.webp",
+    avatar: Shah,
   },
   {
     name: "Deep Jyoti Gusait",
@@ -34,7 +40,7 @@ const reviewsData = [
     rating: 5,
     text:
       "The learning experience was excellent and confidence-building. The institute is ideal for beginners with very supportive faculty.",
-    avatar: "./src/assets/StudentsPicture/Deep Jyoti Gussait.webp",
+    avatar: Deep,
   },
   {
     name: "Archita Newar",
@@ -42,7 +48,7 @@ const reviewsData = [
     rating: 5,
     text:
       "The institute offers an outstanding practical approach to teaching computer technologies. I highly recommend it.",
-    avatar: "./src/assets/StudentsPicture/Archita Newar.webp",
+    avatar: Archita,
   },
   {
     name: "Biki Mudoi",
@@ -50,7 +56,7 @@ const reviewsData = [
     rating: 5,
     text:
       "I am truly grateful for the opportunity to learn computer skills here. The training will be very beneficial for my future career.",
-    avatar: "./src/assets/StudentsPicture/Biki Mudoi.webp",
+    avatar: Biki,
   },
   {
     name: "Sasank Nath",
@@ -58,12 +64,11 @@ const reviewsData = [
     rating: 5,
     text:
       "The course is taught in a detailed and practical manner, making it highly effective for career growth.",
-    avatar: "./src/assets/StudentsPicture/Sasanka Nath.webp",
+    avatar: Sasank,
   },
 ];
 
-/* ---------- Shuffle Function ---------- */
-const shuffleArray = (array) => {
+const shuffleArray = (array: typeof reviewsData) => {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -72,10 +77,9 @@ const shuffleArray = (array) => {
   return shuffled;
 };
 
-/* ---------- Component ---------- */
 const Reviews = () => {
   const [showAll, setShowAll] = useState(false);
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<typeof reviewsData>([]);
 
   useEffect(() => {
     setReviews(shuffleArray(reviewsData));
@@ -89,7 +93,6 @@ const Reviews = () => {
       className="py-20 px-10 bg-gradient-to-br from-muted to-background"
     >
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-6">
           <h2 className="text-3xl md:text-5xl font-bold mb-2">
             Student <span className="text-primary">Reviews</span>
@@ -100,7 +103,6 @@ const Reviews = () => {
           </p>
         </div>
 
-        {/* Reviews Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleReviews.map((review) => (
             <Card
@@ -152,7 +154,6 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Show More / Less Button */}
         {reviews.length > 6 && (
           <div className="flex justify-center mt-10">
             <button

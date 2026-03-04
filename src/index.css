@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+@layer base {
+  :root {
+    /* Tech-themed color palette */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Primary: Deep tech blue */
+    --primary: 215 85% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Primary variants for gradients */
+    --primary-dark: 220 90% 35%;
+    --primary-light: 210 95% 55%;
+
+    /* Secondary: Light blue accent */
+    --secondary: 210 100% 96%;
+    --secondary-foreground: 215 85% 45%;
+
+    /* Muted for subtle backgrounds */
+    --muted: 210 40% 97%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent: Bright cyan */
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 215 85% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(215, 85%, 45%) 0%,
+      hsl(195, 100%, 50%) 100%
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(220, 90%, 35%) 0%,
+      hsl(215, 85%, 45%) 50%,
+      hsl(210, 95%, 55%) 100%
+    );
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsla(215, 85%, 45%, 0.08);
+    --shadow-md: 0 4px 16px hsla(215, 85%, 45%, 0.12);
+    --shadow-lg: 0 8px 32px hsla(215, 85%, 45%, 0.16);
+
+    /* Transitions */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --w: 300px;
+    --h: 420px;
+    --duration: 900ms;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 95% 55%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 195 100% 50%;
+    --accent-foreground: 220 20% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 210 95% 55%;
+  }
+}
+.card-box {
+  position: relative;
+  width: 300px;
+  height: 420px;
+  perspective: 1400px;
+}
+
+.faculty-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 1500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 800ms ease;
+}
+
+.faculty-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(to top, rgb(255, 6, 6) 1%, transparent 99%); */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  color: white;
+}
+.overlay::before {
+  position: absolute;
+  content: "";
+  height: 165px;
+  inset: 0;
+  background: rgb(230, 38, 230);
+  filter: blur(20px);
+  top: 80%;
+  left: -50px;
+  transform: rotate(20deg);
+}
+
+.faculty-card.exit {
+  transform: translateX(-220px) translateY(-18px) rotate(-24deg) scale(0.22) !important;
+  opacity: 0;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -25,7 +25,6 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
-/* ---------------- Zod Schema ---------------- */
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   phone: z.string().trim().min(10, "Phone number must be at least 10 digits"),
@@ -34,7 +33,7 @@ const contactSchema = z.object({
   message: z.string().trim().min(1, "Message is required"),
 });
 
-const whatsappNumber = "+91 7002622715";
+const whatsappNumber = "917002622715"; // without + and spaces
 
 const Contact = () => {
   const { toast } = useToast();
@@ -71,17 +70,22 @@ const Contact = () => {
       const message = `
 Respected Sir/Madam,
 
-I would like to enquire about your available courses. Kindly provide details regarding course duration, fees, and admission process.
+I would like to enquire about your available courses.
 
 Name: ${validatedData.name}
 Contact Number: ${validatedData.phone}
 Email: ${validatedData.email}
 Location: ${validatedData.location}
 
-Thank you for your time and support.
+Thank you.
 `;
 
-      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+      const encodedMessage = encodeURIComponent(message);
+
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+        "_blank"
+      );
 
       toast({
         title: "Redirecting to WhatsApp",
@@ -95,6 +99,7 @@ Thank you for your time and support.
         location: "",
         message: "",
       });
+
       setErrors({});
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -107,38 +112,10 @@ Thank you for your time and support.
     }
   };
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      content: (
-        <div className="space-y-1">
-          <p>📍 Kathiatoli – Near Roy Market, Kathiatoli</p>
-          <p>📍 Nagaon – B B Road, Opposite of Jhony Rolls, Nagaon</p>
-        </div>
-      ),
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      content: whatsappNumber,
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "cbora9723@gmail.com",
-    },
-    {
-      icon: Clock,
-      title: "Office Time",
-      content: "Mon – Sat: 9:00 AM – 5:00 PM",
-    },
-  ];
-
   return (
     <section
       id="contact"
-      className="py-20 px-10  bg-gradient-to-br from-background via-muted to-background"
+      className="py-20 px-10 bg-gradient-to-br from-background via-muted to-background"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
@@ -151,70 +128,36 @@ Thank you for your time and support.
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* -------- FORM -------- */}
+          {/* FORM */}
           <Card className="p-8 rounded-3xl backdrop-blur bg-card/90 shadow-2xl border">
             <h3 className="text-2xl font-bold mb-4">Send Query</h3>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name */}
               <div>
                 <Label>Full Name *</Label>
                 <div className="relative">
-                  <User
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                    size={18}
-                  />
-                  <Input
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className={fieldClass}
-                    placeholder="Your name"
-                  />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input name="name" value={formData.name} onChange={handleChange} className={fieldClass} placeholder="Your name" />
                 </div>
-                {errors.name && (
-                  <p className="text-sm text-destructive">{errors.name}</p>
-                )}
+                {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
               </div>
 
-              {/* Phone */}
               <div>
                 <Label>Phone Number *</Label>
                 <div className="relative">
-                  <Smartphone
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                    size={18}
-                  />
-                  <Input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={fieldClass}
-                    placeholder="Your phone number"
-                  />
+                  <Smartphone className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input name="phone" value={formData.phone} onChange={handleChange} className={fieldClass} placeholder="Your phone number" />
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <Label>Email *</Label>
                 <div className="relative">
-                  <Mail
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                    size={18}
-                  />
-                  <Input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={fieldClass}
-                    placeholder="Your email"
-                  />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input type="email" name="email" value={formData.email} onChange={handleChange} className={fieldClass} placeholder="Your email" />
                 </div>
               </div>
 
-              {/* Location */}
               <div>
                 <Label>Institute Location *</Label>
                 <Select
@@ -236,22 +179,11 @@ Thank you for your time and support.
                 </Select>
               </div>
 
-              {/* Message */}
               <div>
                 <Label>Message *</Label>
                 <div className="relative">
-                  <MessageSquare
-                    className="absolute left-3 top-3 text-muted-foreground"
-                    size={18}
-                  />
-                  <Textarea
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={`${fieldClass} pt-2`}
-                    placeholder="Tell us about your Query"
-                  />
+                  <MessageSquare className="absolute left-3 top-3 text-muted-foreground" size={18} />
+                  <Textarea name="message" rows={4} value={formData.message} onChange={handleChange} className={`${fieldClass} pt-2`} placeholder="Tell us about your Query" />
                 </div>
               </div>
 
@@ -261,22 +193,68 @@ Thank you for your time and support.
             </form>
           </Card>
 
-          {/* -------- INFO -------- */}
+          {/* INFO */}
           <div className="space-y-6">
-            {contactInfo.map((info, i) => (
-              <Card
-                key={i}
-                className="p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all border flex gap-4"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <info.icon className="text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-semibold">{info.title}</h4>
-                  <div className="text-muted-foreground">{info.content}</div>
-                </div>
-              </Card>
-            ))}
+            <Card className="p-6 rounded-2xl shadow-lg border flex gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <MapPin className="text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Visit Us</h4>
+                <p className="text-muted-foreground">
+                  📍 Kathiatoli – Near Roy Market, Kathiatoli{" "}
+                  <a
+                    href="https://www.google.com/maps?q=Kathiatoli+Near+Roy+Market"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline ml-2"
+                  >
+                    Open Map
+                  </a>
+                </p>
+                <p className="text-muted-foreground mt-2">
+                  📍 Nagaon – B B Road, Opposite of Jhony Rolls, Nagaon{" "}
+                  <a
+                    href="https://www.google.com/maps?q=BB+Road+Nagaon+Jhony+Rolls"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline ml-2"
+                  >
+                    Open Map
+                  </a>
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 rounded-2xl shadow-lg border flex gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Phone className="text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Call Us</h4>
+                <p className="text-muted-foreground">+91 70026 22715</p>
+              </div>
+            </Card>
+
+            <Card className="p-6 rounded-2xl shadow-lg border flex gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Mail className="text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Email</h4>
+                <p className="text-muted-foreground">cbora9723@gmail.com</p>
+              </div>
+            </Card>
+
+            <Card className="p-6 rounded-2xl shadow-lg border flex gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Clock className="text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold">Office Time</h4>
+                <p className="text-muted-foreground">Mon – Sat: 9:00 AM – 5:00 PM</p>
+              </div>
+            </Card>
           </div>
         </div>
       </div>

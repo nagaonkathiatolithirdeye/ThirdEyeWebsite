@@ -1,7 +1,7 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 
+// ✅ Import images properly
 import Chinmoy from "@/assets/Faculty/Chinmoy.webp";
 import AditImg from "@/assets/Faculty/Adit.webp";
 import Riku from "@/assets/Faculty/Riku.webp";
@@ -54,43 +54,55 @@ export default function Faculty() {
   }, []);
 
   return (
-    <section className="py-20 flex flex-col items-center bg-background">
-      <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">
-        Our <span className="text-primary">Faculty</span>
-      </h2>
-
-      <div className="relative w-[320px] h-[420px]">
+    <section className="py-16 flex justify-center">
+      <div className="card-box">
         {cards.slice(0, 3).map((f, i) => {
           const isTop = i === 0 && exiting;
 
           return (
             <article
               key={f.name}
-              className={`absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ${
-                isTop ? "opacity-0 scale-95" : ""
-              }`}
+              className={`faculty-card ${isTop ? "exit" : ""}`}
               style={{
                 transform:
                   i === 0
                     ? "rotate(-8deg) translateZ(40px)"
                     : i === 1
-                    ? "rotate(2deg) translateZ(20px)"
-                    : "rotate(10deg) translateZ(0)",
+                      ? "rotate(2deg) translateZ(20px)"
+                      : "rotate(10deg) translateZ(0)",
                 zIndex: 3 - i,
               }}
             >
-              <img
-                src={f.image}
-                alt={f.name}
-                className="w-full h-full object-cover"
-              />
+              <img className="pr-1.5" src={f.image} alt={f.name} />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  padding: "16px",
+                  color: "white",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    height: "165px",
+                    width: "200%",
+                    background: "rgb(230, 38, 230)",
+                    filter: "blur(20px)",
+                    bottom: "-120px",
+                    left: "-50px",
+                    transform: "rotate(20deg)",
+                    zIndex: 0,
+                  }}
+                />
 
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5">
-                <div className="text-white">
-                  <h4 className="text-lg font-bold">{f.name}</h4>
-                  <p className="text-sm tracking-wide opacity-90">
-                    {f.role}
-                  </p>
+                {/* Text content */}
+                <div style={{ position: "relative", zIndex: 1 }}>
+                  <h4>{f.name}</h4>
+                  <p>{f.role}</p>
                 </div>
               </div>
             </article>

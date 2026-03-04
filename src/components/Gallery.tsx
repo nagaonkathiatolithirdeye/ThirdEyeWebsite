@@ -11,7 +11,16 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import NagaonGallery from "./NagaonGallery";
+
+import Entrance from "@/assets/Pictures/Entrance.webp";
+import OfficeRoom from "@/assets/Pictures/Office Room.webp";
+import PracticalRoom from "@/assets/Pictures/Practical Room.webp";
+import TheoryRoom from "@/assets/Pictures/Theory Room.webp";
+import Practical1 from "@/assets/Pictures/practical class 1.webp";
+import Practical2 from "@/assets/Pictures/practical class 2.webp";
+import Practical3 from "@/assets/Pictures/practical class 3.webp";
+import Practical4 from "@/assets/Pictures/practical class 4.webp";
+import Practical5 from "@/assets/Pictures/practical class 5.webp";
 
 type GalleryItem = {
   title: string;
@@ -49,48 +58,22 @@ const Gallery = () => {
   }, [api]);
 
   const items: GalleryItem[] = [
-        {
-      title: "Entrance",
-      image: "./src/assets/Pictures/Entrance.webp",
-    },
-    {
-      title: "Office Room",
-      image: "./src/assets/Pictures/Office Room.webp",
-    },
-    {
-      title: "Practical Room",
-      image: "./src/assets/Pictures/Practical Room.webp",
-    },
-    {
-      title: "Theory Room",
-      image: "./src/assets/Pictures/Theory Room.webp",
-    },
-    {
-      title: "Practical Class",
-      image: "./src/assets/Pictures/practical class 1.webp",
-    },
-    {
-      title: "Practical Class",
-      image: "./src/assets/Pictures/practical class 2.webp",
-    },
-    {
-      title: "Practical Class",
-      image: "./src/assets/Pictures/practical class 3.webp",
-    },
-    {
-      title: "Practical Class",
-      image: "./src/assets/Pictures/practical class 4.webp",
-    },
-    {
-      title: "Practical Class",
-      image: "./src/assets/Pictures/practical class 5.webp",
-    },
+    { title: "Entrance", image: Entrance },
+    { title: "Office Room", image: OfficeRoom },
+    { title: "Practical Room", image: PracticalRoom },
+    { title: "Theory Room", image: TheoryRoom },
+    { title: "Practical Class", image: Practical1 },
+    { title: "Practical Class", image: Practical2 },
+    { title: "Practical Class", image: Practical3 },
+    { title: "Practical Class", image: Practical4 },
+    { title: "Practical Class", image: Practical5 },
   ];
 
   const totalSlides = items.length;
-const scrollTo = (index: number) => {
-  api?.scrollTo(index);
-};
+
+  const scrollTo = (index: number) => {
+    api?.scrollTo(index);
+  };
 
   return (
     <section id="gallery" className="py-14 sm:py-20 bg-background">
@@ -105,13 +88,11 @@ const scrollTo = (index: number) => {
           opts={{ loop: true, align: "center" }}
           className="relative w-full max-w-6xl mx-auto"
         >
-          {/* remove negative margin on mobile */}
           <CarouselContent className="ml-0 sm:-ml-4">
             {items.map((item, index) => {
               const rawDistance = Math.abs(activeIndex - index);
               const distance = Math.min(rawDistance, totalSlides - rawDistance);
 
-              /* 🔹 softer scaling on mobile */
               const scale =
                 distance === 0
                   ? "scale-100"
@@ -136,20 +117,13 @@ const scrollTo = (index: number) => {
               return (
                 <CarouselItem
                   key={index}
-                  className="
-                    basis-[90%]
-                    sm:basis-[60%]
-                    md:basis-[40%]
-                    lg:basis-[25%]
-                    px-2 sm:pl-4
-                  "
+                  className="basis-[90%] sm:basis-[60%] md:basis-[40%] lg:basis-[25%] px-2 sm:pl-4"
                 >
                   <div
                     className={`transform transition-all duration-700 ease-out ${scale} ${opacity} ${zIndex}`}
                   >
                     <Card className="overflow-hidden rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl">
                       <CardContent className="p-0">
-                        {/* shorter ratio on mobile */}
                         <div className="relative aspect-[4/5] sm:aspect-[3/5]">
                           <img
                             src={item.image}
@@ -173,34 +147,29 @@ const scrollTo = (index: number) => {
             })}
           </CarouselContent>
 
-          {/* hide arrows on mobile */}
           <div className="hidden sm:block">
             <CarouselPrevious />
             <CarouselNext />
           </div>
         </Carousel>
-        {/* Mobile Dots Indicator */}
-<div className="mt-6 flex justify-center gap-2 sm:hidden">
-  {items.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => scrollTo(index)}
-      className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-        activeIndex === index
-          ? "bg-primary scale-110"
-          : "bg-muted-foreground/40"
-      }`}
-      aria-label={`Go to slide ${index + 1}`}
-    />
-  ))}
-</div>
 
+        <div className="mt-6 flex justify-center gap-2 sm:hidden">
+          {items.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                activeIndex === index
+                  ? "bg-primary scale-110"
+                  : "bg-muted-foreground/40"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
-
-      {/* <NagaonGallery /> */}
     </section>
   );
 };
 
 export default Gallery;
-

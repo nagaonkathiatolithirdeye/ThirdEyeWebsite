@@ -262,7 +262,7 @@ const Navbar = () => {
                     className="cta-btn w-full"
                     onClick={() => window.open("https://management-q7kq.onrender.com", "_blank")}
                   >
-                    Get Started
+                    Admin
                   </button>
                 </div>
               </div>

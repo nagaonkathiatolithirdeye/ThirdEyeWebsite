@@ -65,7 +65,7 @@ const Courses = () => {
       duration: "3 Months",
       description:
         "Comprehensive course covering office tools, accounting, and desktop publishing.",
-      highlights: ["Typing", "Word","Excel","PowerPoint","Adobe PageMaker","Adobe Photoshop","CorelDRAW"],
+      highlights: ["Typing", "Word", "Excel", "PowerPoint", "Adobe PageMaker", "Adobe Photoshop", "CorelDRAW"],
     },
     {
       icon: Aperture,
@@ -73,7 +73,7 @@ const Courses = () => {
       duration: "3 Months",
       description:
         "Comprehensive course covering office tools, accounting, and desktop publishing.",
-      highlights: ["Typing", "Word","Excel","PowerPoint","Adobe PageMaker","Adobe Photoshop","CorelDRAW"],
+      highlights: ["Typing", "Word", "Excel", "PowerPoint", "Adobe PageMaker", "Adobe Photoshop", "CorelDRAW"],
     },
     {
       icon: Code,
@@ -216,17 +216,6 @@ const Courses = () => {
           ))}
         </div>
       </div>
-      <h3 className="text-center text-xl md:text-2xl font-medium text-gray-800 leading-relaxed mt-8">
-        Very soon, we’re launching a special course for the 2026
-        <span className="mx-3 inline-block rounded-md bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-sm md:text-base font-semibold text-white">
-          HSLC
-        </span>
-        &
-        <span className="mx-3 inline-block rounded-md bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-sm md:text-base font-semibold text-white">
-          HS
-        </span>
-        candidates.
-      </h3>
     </section>
   );
 };

@@ -8,6 +8,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Location from "@/components/Location";
+import OnlineCourses from "@/components/OnlineCourses";
+
 const Index = () => {
   return (
     <div className="min-h-screen">
@@ -15,6 +17,7 @@ const Index = () => {
       <Hero />
       <About />
       <Courses />
+      <OnlineCourses />
       <Reviews />
       <Gallery />
       <Contact />

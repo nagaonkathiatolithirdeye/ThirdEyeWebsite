@@ -11,7 +11,7 @@ import Sasank from "@/assets/StudentsPicture/Sasanka Nath.webp";
 
 const reviewsData = [
   {
-    name: "Sakib Sahariyar Nobi",
+    name: "Sakib Sahriyar Nobi",
     course: "DCA",
     rating: 5,
     text:

@@ -73,7 +73,7 @@ const Courses = () => {
       duration: "3 Months",
       description:
         "Comprehensive course covering office tools, accounting, and desktop publishing.",
-      highlights: ["Typing", "Word", "Excel", "PowerPoint", "Adobe PageMaker", "Adobe Photoshop", "CorelDRAW"],
+      highlights: ["Typing", "Word", "Excel", "PowerPoint", "Tally Prime"],
     },
     {
       icon: Code,
